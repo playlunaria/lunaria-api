@@ -1,0 +1,30 @@
+---
+name: Protobuf
+
+on: [push]
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install buf from binary
+        run: |
+          VERSION="0.25.0"
+          BIN="/usr/local/bin"
+          BINARY_NAME="buf"
+
+          sudo curl -sSL \
+              "https://github.com/bufbuild/buf/releases/download/v${VERSION}/${BINARY_NAME}-$(uname -s)-$(uname -m)" \
+              -o "${BIN}/${BINARY_NAME}"
+
+          sudo chmod +x "${BIN}/${BINARY_NAME}"
+
+      - name: Lint Protocol Buffers
+        run: |
+          cd protobufs
+          buf check lint
