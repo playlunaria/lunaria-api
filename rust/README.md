@@ -1,4 +1,8 @@
-# lunaria-api
+# 🦀 lunaria-api
+
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/playlunaria/lunaria-api)](https://github.com/playlunaria/lunaria-api/releases)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/playlunaria/lunaria-api/rust)](https://github.com/playlunaria/lunaria-api/actions?query=workflow%3ARust)
+[![License](https://img.shields.io/crates/l/lunaria-api)](https://crates.io/crates/lunaria-api)
 
 _A Rust API client for the video game Lunaria._
 
