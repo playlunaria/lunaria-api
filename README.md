@@ -7,6 +7,14 @@ interacts with the game through a [gRPC] API. This repository contains the
 [Protocol Buffer][protobuf] specification of the API, and tooling to generate
 gRPC clients in popular languages from this specification.
 
+<!-- markdownlint-disable line-length -->
+
+| Language | Package                                                                                           |
+| -------- | ------------------------------------------------------------------------------------------------- |
+| Rust     | [![Crates.io](https://img.shields.io/crates/v/lunaria-api)](https://crates.io/crates/lunaria-api) |
+
+<!-- markdownlint-enable line-length -->
+
 ## License
 
 Licensed under either of
