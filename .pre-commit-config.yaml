@@ -27,3 +27,10 @@ repos:
     rev: 2.1.2
     hooks:
       - id: prettier
+  - repo: https://github.com/doublify/pre-commit-rust
+    rev: v1.0
+    hooks:
+      - id: clippy
+        args: [--manifest-path, rust/Cargo.toml, --all, --, -D, warnings]
+      - id: fmt
+        args: [--manifest-path, rust/Cargo.toml, --all, --]

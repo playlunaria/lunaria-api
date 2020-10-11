@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package lunaria.v1;
+
+message Version {
+  int64 major = 1;
+  int64 minor = 2;
+  int64 patch = 3;
+}
+
+message GetVersionRequest {}
+message GetVersionResponse {
+  Version version = 1;
+}
+
+service LunariaService {
+  rpc GetVersion(GetVersionRequest) returns (GetVersionResponse);
+}
