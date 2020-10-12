@@ -15,22 +15,22 @@ jobs:
       - name: Cache cargo registry
         uses: actions/cache@v1
         with:
-          path: ~/rust/.cargo/registry
-          key: ${{ runner.os }}-stable-cargo-registry-v1-${{ hashFiles('~/rust/Cargo.lock') }}
+          path: ~/src/rust/.cargo/registry
+          key: ${{ runner.os }}-stable-cargo-registry-v1-${{ hashFiles('~/src/rust/Cargo.lock') }}
           restore-keys: ${{ runner.os }}-stable-cargo-registry-v1-
 
       - name: Cache cargo index
         uses: actions/cache@v1
         with:
-          path: ~/rust/.cargo/git
-          key: ${{ runner.os }}-stable-cargo-index-v1-${{ hashFiles('~/rust/Cargo.lock') }}
+          path: ~/src/rust/.cargo/git
+          key: ${{ runner.os }}-stable-cargo-index-v1-${{ hashFiles('~/src/rust/Cargo.lock') }}
           restore-keys: ${{ runner.os }}-stable-cargo-index-v1-
 
       - name: Cache cargo build
         uses: actions/cache@v1
         with:
-          path: ~/rust/target
-          key: ${{ runner.os }}-stable-cargo-build-target-v1-${{ hashFiles('~/rust/Cargo.lock') }}
+          path: ~/src/rust/target
+          key: ${{ runner.os }}-stable-cargo-build-target-v1-${{ hashFiles('~/src/rust/Cargo.lock') }}
           restore-keys: ${{ runner.os }}-stable-cargo-build-target-v1-
 
       - name: Set up Rust toolchain
@@ -43,7 +43,7 @@ jobs:
         uses: actions-rs/cargo@v1
         with:
           command: clippy
-          args: --manifest-path rust/Cargo.toml --all-targets --all-features -- -D warnings
+          args: --manifest-path ~/src/rustCargo.toml --all-targets --all-features -- -D warnings
 
   rustfmt:
     name: Rustfmt
@@ -63,7 +63,7 @@ jobs:
         uses: actions-rs/cargo@v1
         with:
           command: fmt
-          args: --manifest-path rust/Cargo.toml --all -- --check
+          args: --manifest-path ~/src/rustCargo.toml --all -- --check
 
   test:
     name: Test
@@ -76,22 +76,22 @@ jobs:
       - name: Cache cargo registry
         uses: actions/cache@v1
         with:
-          path: ~/rust/.cargo/registry
-          key: ${{ runner.os }}-stable-cargo-registry-v1-${{ hashFiles('~/rust/Cargo.lock') }}
+          path: ~/src/rust/.cargo/registry
+          key: ${{ runner.os }}-stable-cargo-registry-v1-${{ hashFiles('~/src/rust/Cargo.lock') }}
           restore-keys: ${{ runner.os }}-stable-cargo-registry-v1-
 
       - name: Cache cargo index
         uses: actions/cache@v1
         with:
-          path: ~/rust/.cargo/git
-          key: ${{ runner.os }}-stable-cargo-index-v1-${{ hashFiles('~/rust/Cargo.lock') }}
+          path: ~/src/rust/.cargo/git
+          key: ${{ runner.os }}-stable-cargo-index-v1-${{ hashFiles('~/src/rust/Cargo.lock') }}
           restore-keys: ${{ runner.os }}-stable-cargo-index-v1-
 
       - name: Cache cargo build
         uses: actions/cache@v1
         with:
-          path: ~/rust/target
-          key: ${{ runner.os }}-stable-cargo-build-target-v1-${{ hashFiles('~/rust/Cargo.lock') }}
+          path: ~/src/rust/target
+          key: ${{ runner.os }}-stable-cargo-build-target-v1-${{ hashFiles('~/src/rust/Cargo.lock') }}
           restore-keys: ${{ runner.os }}-stable-cargo-build-target-v1-
 
       - name: Set up Rust toolchain
@@ -104,4 +104,4 @@ jobs:
         uses: actions-rs/cargo@v1
         with:
           command: test
-          args: --manifest-path rust/Cargo.toml --all --verbose
+          args: --manifest-path ~/src/rustCargo.toml --all --verbose
