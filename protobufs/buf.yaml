@@ -1,0 +1,6 @@
+---
+version: v1beta1
+
+lint:
+  except:
+    - SERVICE_SUFFIX

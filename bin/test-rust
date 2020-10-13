@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+IFS=$'\n\t'
+
+export LUNARIA_ADDRESS=127.0.0.1:1904
+
+bin_directory="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
+root_directory="$(cd "$bin_directory/.." || exit 1 && pwd)"
+
+cd "$root_directory" || exit 2
+
+cargo run --manifest-path tests/Cargo.toml &
+test_server_pid="$!"
+
+cargo test --manifest-path src/rust/Cargo.toml --all --verbose
+
+trap "kill ${test_server_pid}" exit INT TERM
