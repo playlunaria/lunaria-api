@@ -3,7 +3,18 @@ version: 2
 
 updates:
   - package-ecosystem: "cargo"
-    directory: "/rust"
+    directory: "/src/rust"
+    schedule:
+      interval: "daily"
+    labels:
+      - "C-dependency"
+    assignees:
+      - "jdno"
+    reviewers:
+      - "jdno"
+
+  - package-ecosystem: "npm"
+    directory: "/src/node"
     schedule:
       interval: "daily"
     labels:
