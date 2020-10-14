@@ -9,7 +9,7 @@ _A Rust API client for the video game Lunaria._
 [Lunaria] is a video game for programmers, and is played by writing code that
 interacts with the game through a [gRPC] API. This crate contains a [gRPC]
 client that is auto-generated from the [Protocol Buffers][protobuf] that declare
-the [Lunaria's API][lunaria-api].
+[Lunaria's API][lunaria-api].
 
 ## License
 
