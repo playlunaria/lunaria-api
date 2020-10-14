@@ -9,9 +9,10 @@ gRPC clients in popular languages from this specification.
 
 <!-- markdownlint-disable line-length -->
 
-| Language | Package                                                                                           |
-| -------- | ------------------------------------------------------------------------------------------------- |
-| Rust     | [![Crates.io](https://img.shields.io/crates/v/lunaria-api)](https://crates.io/crates/lunaria-api) |
+| Language           | Package                                                                                           |
+| ------------------ | ------------------------------------------------------------------------------------------------- |
+| [Node](./src/node) | [![npm](https://img.shields.io/npm/v/lunaria-api)](https://www.npmjs.com/package/lunaria-api)     |
+| [Rust](./src/rust) | [![Crates.io](https://img.shields.io/crates/v/lunaria-api)](https://crates.io/crates/lunaria-api) |
 
 <!-- markdownlint-enable line-length -->
 

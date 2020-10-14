@@ -5,7 +5,7 @@ on: [push]
 
 jobs:
   clippy:
-    name: Clippy
+    name: Lint
     runs-on: ubuntu-latest
 
     steps:

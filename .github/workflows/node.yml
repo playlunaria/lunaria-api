@@ -1,0 +1,88 @@
+---
+name: Node
+
+on: [push]
+
+jobs:
+  prettier:
+    name: Lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: Install dependencies
+        uses: bahmutov/npm-install@v1
+        with:
+          working-directory: src/node
+
+      - name: Lint project
+        working-directory: src/node
+        run: yarn lint
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install system dependencies
+        run: sudo apt-get update && sudo apt-get install -y protobuf-compiler
+
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Cache cargo registry
+        uses: actions/cache@v1
+        with:
+          path: tests/.cargo/registry
+          key: ${{ runner.os }}-stable-cargo-registry-v1-${{ hashFiles('tests/Cargo.toml') }}
+          restore-keys: ${{ runner.os }}-stable-cargo-registry-v1-
+
+      - name: Cache cargo index
+        uses: actions/cache@v1
+        with:
+          path: tests/.cargo/git
+          key: ${{ runner.os }}-stable-cargo-index-v1-${{ hashFiles('tests/Cargo.toml') }}
+          restore-keys: ${{ runner.os }}-stable-cargo-index-v1-
+
+      - name: Cache cargo build
+        uses: actions/cache@v1
+        with:
+          path: tests/target
+          key: ${{ runner.os }}-stable-cargo-build-target-v1-${{ hashFiles('tests/Cargo.toml') }}
+          restore-keys: ${{ runner.os }}-stable-cargo-build-target-v1-
+
+      - name: Set up Rust toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+
+      - name: Build test server
+        uses: actions-rs/cargo@v1
+        with:
+          command: build
+          args: --manifest-path tests/Cargo.toml
+
+      - name: Set up Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: Install dependencies
+        uses: bahmutov/npm-install@v1
+        with:
+          working-directory: src/node
+
+      - name: Build Node client
+        working-directory: src/node
+        run: yarn build
+
+      - name: Run tests
+        run: bin/test-node
