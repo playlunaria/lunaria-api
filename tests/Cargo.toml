@@ -11,5 +11,5 @@ publish = false
 [dependencies]
 lunaria-api = { path = "../src/rust", version = "0.0.0", features = ["server"] }
 
-tokio = { version = "0.3.0", features = ["macros", "rt-threaded"] }
+tokio = { version = "0.3.0", features = ["macros", "rt-multi-thread"] }
 tonic = "0.3.1"
