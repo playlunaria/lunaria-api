@@ -1,0 +1,76 @@
+---
+name: Release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  node:
+    name: Node
+    runs-on: ubuntu-latest
+
+    env:
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+    steps:
+      - name: Install system dependencies
+        run: sudo apt-get update && sudo apt-get install -y protobuf-compiler
+
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: Install dependencies
+        uses: bahmutov/npm-install@v1
+        with:
+          working-directory: languages/node
+
+      - name: Authenticate using a token
+        run: echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > languages/node/.npmrc
+
+      - name: Build Node client
+        working-directory: languages/node
+        run: yarn build
+
+      - name: Publish to npm
+        working-directory: languages/node
+        run: npm publish
+
+  rust:
+    name: Rust
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Cache cargo registry
+        uses: actions/cache@v1
+        with:
+          path: languages/rust/.cargo/registry
+          key: ${{ runner.os }}-stable-cargo-registry-v1-${{ hashFiles('languages/rust/Cargo.toml') }}
+          restore-keys: ${{ runner.os }}-stable-cargo-registry-v1-
+
+      - name: Cache cargo index
+        uses: actions/cache@v1
+        with:
+          path: languages/rust/.cargo/git
+          key: ${{ runner.os }}-stable-cargo-index-v1-${{ hashFiles('languages/rust/Cargo.toml') }}
+          restore-keys: ${{ runner.os }}-stable-cargo-index-v1-
+
+      - name: Cache cargo build
+        uses: actions/cache@v1
+        with:
+          path: languages/rust/target
+          key: ${{ runner.os }}-stable-cargo-build-target-v1-${{ hashFiles('languages/rust/Cargo.toml') }}
+          restore-keys: ${{ runner.os }}-stable-cargo-build-target-v1-
+
+      - name: Publish to crates.io
+        run: |
+          cd languages/rust
+          cargo publish --token ${{ secrets.CRATES_TOKEN}} -v --all-features
