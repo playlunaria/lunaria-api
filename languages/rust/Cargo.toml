@@ -1,6 +1,6 @@
 [package]
 name = "lunaria-api"
-version = "0.0.0"
+version = "0.1.0"
 authors = [
     "Lunaria Contributors",
     "Jan David Nose <jandavid@playlunaria.com>",
