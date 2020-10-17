@@ -1,0 +1,88 @@
+#!/usr/bin/env bash
+
+# Enable strict mode
+set -euo pipefail
+IFS=$'\n\t'
+
+if [ $# -ne 1 ]; then
+  echo "Usage: ./prepare-release <next_version>"
+  exit 1
+fi
+
+next_version=$1
+current_git_tag="$(git tag -l "v*" | sort | tail -n 1)"
+current_version="$(echo "$current_git_tag" | cut -c 2-)"
+
+if [[ -z "$current_version" ]]; then
+  echo "Failed to get latest version. Aborting"
+  exit 2
+fi
+
+echo "Current next_version: ${current_version}"
+echo "Next next_version:    ${next_version}"
+read -p "Continue? [y/n] " -n 1 -r
+echo
+
+if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+    exit 3
+fi
+
+echo
+
+bin_directory="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
+root_directory="$(cd "${bin_directory}/.." || exit 4 && pwd)"
+
+# Update version
+echo "Bumping version..."
+
+files=(
+  "languages/node/package.json"
+  "languages/rust/Cargo.toml"
+  "languages/rust/README.md"
+  "languages/rust/src/lib.rs"
+  "test-server/Cargo.toml"
+)
+
+for file in "${files[@]}"; do
+  vim -c "%s/${current_version}/${next_version}/g" -c "wq" "${root_directory}/${file}"
+done
+
+IFS='.'
+read -ra current_version_components <<< "$current_version"
+read -ra next_version_components <<< "$next_version"
+IFS=$'\n\t'
+
+vim -c "%s/expect(version.getMajor()).toEqual(${current_version_components[0]});/expect(version.getMajor()).toEqual(${next_version_components[0]});/g" -c "wq" "languages/node/test/version.test.ts"
+vim -c "%s/expect(version.getMinor()).toEqual(${current_version_components[1]});/expect(version.getMinor()).toEqual(${next_version_components[1]});/g" -c "wq" "languages/node/test/version.test.ts"
+vim -c "%s/expect(version.getPatch()).toEqual(${current_version_components[2]});/expect(version.getPatch()).toEqual(${next_version_components[2]});/g" -c "wq" "languages/node/test/version.test.ts"
+
+vim -c "%s/assert_eq!(${current_version_components[0]}, version.major);/assert_eq!(${next_version_components[0]}, version.major);/g" -c "wq" "languages/rust/src/lib.rs"
+vim -c "%s/assert_eq!(${current_version_components[1]}, version.minor);/assert_eq!(${next_version_components[1]}, version.minor);/g" -c "wq" "languages/rust/src/lib.rs"
+vim -c "%s/assert_eq!(${current_version_components[2]}, version.patch);/assert_eq!(${next_version_components[2]}, version.patch);/g" -c "wq" "languages/rust/src/lib.rs"
+
+# Verifying versions
+echo "Verifying packages..."
+
+echo " . test-server"
+(cd test-server && cargo build >/dev/null 2>&1 || exit 5)
+
+echo " . Node"
+(bin/test-node || exit 6)
+
+echo " . Rust"
+(bin/test-rust >/dev/null 2>&1 || exit 7)
+
+# Updating changelog
+echo "Updating changelog..."
+vim "${root_directory}/CHANGELOG.md"
+
+# Commit changes
+echo "Committing changes..."
+git checkout -b "release-${next_version}" >/dev/null 2>&1
+git add . >/dev/null 2>&1
+git commit -m "Release ${next_version}" >/dev/null 2>&1
+
+echo
+echo "Release of version ${next_version} prepared. Push the branch, open a pull"
+echo "request, and wait for review. Once merged, create a new release on GitHub."
+echo
