@@ -61,6 +61,7 @@
 //! [lunaria]: https://playlunaria.com
 //! [lunaria-api]: https://github.com/playlunaria/lunaria-api
 //! [protobuf]: https://developers.google.com/protocol-buffers/
+//! [tokio]: https://github.com/tokio-rs/tokio
 //! [tonic]: https://github.com/hyperium/tonic
 
 pub mod lunaria {

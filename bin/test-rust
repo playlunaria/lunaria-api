@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -euo pipefail
+set -eEuo pipefail
 IFS=$'\n\t'
 
 export LUNARIA_ADDRESS=127.0.0.1:1904
@@ -15,4 +15,4 @@ test_server_pid="$!"
 
 cargo test --manifest-path languages/rust/Cargo.toml --all --verbose
 
-trap "kill ${test_server_pid}" exit INT TERM
+trap "kill ${test_server_pid}" exit ERR INT TERM
