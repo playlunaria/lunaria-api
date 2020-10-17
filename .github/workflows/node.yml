@@ -40,22 +40,22 @@ jobs:
       - name: Cache cargo registry
         uses: actions/cache@v1
         with:
-          path: tests/.cargo/registry
-          key: ${{ runner.os }}-stable-cargo-registry-v1-${{ hashFiles('tests/Cargo.toml') }}
+          path: test-server/.cargo/registry
+          key: ${{ runner.os }}-stable-cargo-registry-v1-${{ hashFiles('test-server/Cargo.toml') }}
           restore-keys: ${{ runner.os }}-stable-cargo-registry-v1-
 
       - name: Cache cargo index
         uses: actions/cache@v1
         with:
-          path: tests/.cargo/git
-          key: ${{ runner.os }}-stable-cargo-index-v1-${{ hashFiles('tests/Cargo.toml') }}
+          path: test-server/.cargo/git
+          key: ${{ runner.os }}-stable-cargo-index-v1-${{ hashFiles('test-server/Cargo.toml') }}
           restore-keys: ${{ runner.os }}-stable-cargo-index-v1-
 
       - name: Cache cargo build
         uses: actions/cache@v1
         with:
-          path: tests/target
-          key: ${{ runner.os }}-stable-cargo-build-target-v1-${{ hashFiles('tests/Cargo.toml') }}
+          path: test-server/target
+          key: ${{ runner.os }}-stable-cargo-build-target-v1-${{ hashFiles('test-server/Cargo.toml') }}
           restore-keys: ${{ runner.os }}-stable-cargo-build-target-v1-
 
       - name: Set up Rust toolchain
@@ -68,7 +68,7 @@ jobs:
         uses: actions-rs/cargo@v1
         with:
           command: build
-          args: --manifest-path tests/Cargo.toml
+          args: --manifest-path test-server/Cargo.toml
 
       - name: Set up Node
         uses: actions/setup-node@v1

@@ -10,7 +10,7 @@ root_directory="$(cd "$bin_directory/.." || exit 1 && pwd)"
 
 cd "$root_directory" || exit 2
 
-cargo run --manifest-path tests/Cargo.toml &
+cargo run --manifest-path test-server/Cargo.toml &
 test_server_pid="$!"
 
 cargo test --manifest-path src/rust/Cargo.toml --all --verbose
