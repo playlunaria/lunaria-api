@@ -20,10 +20,10 @@ jobs:
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
         with:
-          working-directory: src/node
+          working-directory: languages/node
 
       - name: Lint project
-        working-directory: src/node
+        working-directory: languages/node
         run: yarn lint
 
   test:
@@ -78,10 +78,10 @@ jobs:
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
         with:
-          working-directory: src/node
+          working-directory: languages/node
 
       - name: Build Node client
-        working-directory: src/node
+        working-directory: languages/node
         run: yarn build
 
       - name: Run tests

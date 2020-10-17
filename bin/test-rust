@@ -13,6 +13,6 @@ cd "$root_directory" || exit 2
 cargo run --manifest-path test-server/Cargo.toml &
 test_server_pid="$!"
 
-cargo test --manifest-path src/rust/Cargo.toml --all --verbose
+cargo test --manifest-path languages/rust/Cargo.toml --all --verbose
 
 trap "kill ${test_server_pid}" exit INT TERM
