@@ -33,7 +33,7 @@ prost = "0.6.1"
 tonic = "0.3.1"
 
 [dev-dependencies]
-tokio = { version = "0.2.22", features = ["macros", "rt-threaded"] }
+tokio = { version = "0.3.0", features = ["macros", "rt-threaded"] }
 
 [build-dependencies]
 tonic-build = "0.3.1"
