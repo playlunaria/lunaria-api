@@ -14,9 +14,9 @@ impl lunaria_api::lunaria::v1::lunaria_server::Lunaria for Lunaria {
         _request: Request<GetVersionRequest>,
     ) -> Result<Response<GetVersionResponse>, Status> {
         let version = Version {
-            major: 0,
-            minor: 0,
-            patch: 0,
+            major: env!("CARGO_PKG_VERSION_MAJOR").parse().unwrap(),
+            minor: env!("CARGO_PKG_VERSION_MINOR").parse().unwrap(),
+            patch: env!("CARGO_PKG_VERSION_PATCH").parse().unwrap(),
         };
 
         Ok(Response::new(GetVersionResponse {
