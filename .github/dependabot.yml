@@ -3,7 +3,7 @@ version: 2
 
 updates:
   - package-ecosystem: "npm"
-    directory: "/src/node"
+    directory: "/languages/node"
     schedule:
       interval: "daily"
     labels:
@@ -14,7 +14,7 @@ updates:
       - "jdno"
 
   - package-ecosystem: "cargo"
-    directory: "/src/rust"
+    directory: "/languages/rust"
     schedule:
       interval: "daily"
     labels:

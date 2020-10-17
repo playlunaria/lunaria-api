@@ -13,6 +13,6 @@ cd "$root_directory" || exit 2
 cargo run --manifest-path test-server/Cargo.toml &
 test_server_pid="$!"
 
-cd src/node && yarn test
+cd languages/node && yarn test
 
 trap "kill ${test_server_pid}" exit INT TERM
