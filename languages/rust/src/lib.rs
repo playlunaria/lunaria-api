@@ -33,6 +33,7 @@
 //! use lunaria_api::lunaria::v1::lunaria_client::LunariaClient;
 //! use lunaria_api::lunaria::v1::{GetVersionRequest, GetVersionResponse, Version};
 //! use tonic::Request;
+//! use tokio_compat_02::FutureExt;
 //!
 //! #[tokio::main]
 //! async fn main() -> Result<(), Box<dyn std::error::Error>> {
@@ -40,11 +41,11 @@
 //!     let address = "http://127.0.0.1:1904";
 //!
 //!     // Initialize the client
-//!     let mut lunaria = LunariaClient::connect(address).await?;
+//!     let mut lunaria = LunariaClient::connect(address).compat().await?;
 //!
 //!     // Create a request to get the game's version and send it to the server
 //!     let request = Request::new(GetVersionRequest {});
-//!     let grpc_response = lunaria.get_version(request).await?;
+//!     let grpc_response = lunaria.get_version(request).compat().await?;
 //!     let version_response = grpc_response.into_inner();
 //!
 //!     if let Some(version) = version_response.version {
