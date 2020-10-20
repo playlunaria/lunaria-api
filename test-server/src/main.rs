@@ -1,8 +1,8 @@
-use tonic::transport::Server;
-use tonic::{Request, Response, Status};
-
 use lunaria_api::lunaria::v1::lunaria_server::LunariaServer;
 use lunaria_api::lunaria::v1::{GetVersionRequest, GetVersionResponse, Version};
+use tokio_compat_02::FutureExt;
+use tonic::transport::Server;
+use tonic::{Request, Response, Status};
 
 #[derive(Clone, Debug, Default)]
 struct Lunaria {}
@@ -36,6 +36,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     Server::builder()
         .add_service(LunariaServer::new(lunaria))
         .serve(address)
+        .compat()
         .await?;
 
     Ok(())
