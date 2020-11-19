@@ -878,9 +878,9 @@
     minimist "^1.2.0"
 
 "@grpc/grpc-js@^1.1.7":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@grpc/grpc-js/-/grpc-js-1.2.0.tgz#4ff1ac4cdf7eb2af80d3c67316be9c2308d8d9bf"
-  integrity sha512-09H50V7rmz0gFrGz6IbP49z9A8+2p4yZYcNDEb7bytr90vWn52VBQE1a+LMBlrucmNN0wSsiCr3TJx+dStHTng==
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@grpc/grpc-js/-/grpc-js-1.2.1.tgz#6a0b4e1bc6039d84f945569ff8c3059f81284afe"
+  integrity sha512-JpGh2CgqnwVII0S9TMEX3HY+PkLJnb7HSAar3Md1Y3aWxTZqAGb7gTrNyBWn/zueaGFsMYRm2u/oYufWFYVoIQ==
   dependencies:
     "@types/node" "^12.12.47"
     google-auth-library "^6.1.1"
