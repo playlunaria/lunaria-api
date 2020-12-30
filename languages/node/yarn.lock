@@ -3433,12 +3433,12 @@ grpc-tools@^1.9.1:
     node-pre-gyp "^0.15.0"
 
 grpc_tools_node_protoc_ts@^5.0.1:
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/grpc_tools_node_protoc_ts/-/grpc_tools_node_protoc_ts-5.0.1.tgz#8ea1989f7b99954db564cd9d6870b81c54549ffa"
-  integrity sha512-lGCWyibXW/enO0+bdysU/lk/n4g6SQgKYjEW52zl9LlL4eTIrZRPAylumD7Js4/ZNjPb33Ad7BKMLSgtiX609g==
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/grpc_tools_node_protoc_ts/-/grpc_tools_node_protoc_ts-5.1.0.tgz#7ff0706bedc8902187fc1163bcd307156206c91d"
+  integrity sha512-jXn5JKmjdzPqjsrh7IPKnjlTFoNOHlP7xSKq8L9nDGbDrMj4qwEGHrQfX2YhqCmBc9pAQ9Y4+sPnlOTaOp61PA==
   dependencies:
     google-protobuf "3.12.4"
-    handlebars "4.7.4"
+    handlebars "4.7.6"
     handlebars-helpers "0.10.0"
 
 gtoken@^5.0.4:
@@ -3510,18 +3510,7 @@ handlebars-utils@^1.0.2, handlebars-utils@^1.0.4, handlebars-utils@^1.0.6:
     kind-of "^6.0.0"
     typeof-article "^0.1.1"
 
-handlebars@4.7.4:
-  version "4.7.4"
-  resolved "https://registry.yarnpkg.com/handlebars/-/handlebars-4.7.4.tgz#902c579cc97b350bb4bc12e6cabd85b57dcd9975"
-  integrity sha512-Is8+SzHv8K9STNadlBVpVhxXrSXxVgTyIvhdg2Qjak1SfSZ7iEozLHdwiX1jJ9lLFkcFJxqGK5s/cI7ZX+qGkQ==
-  dependencies:
-    neo-async "^2.6.0"
-    source-map "^0.6.1"
-    yargs "^15.3.1"
-  optionalDependencies:
-    uglify-js "^3.1.4"
-
-handlebars@^4.0.11:
+handlebars@4.7.6, handlebars@^4.0.11:
   version "4.7.6"
   resolved "https://registry.yarnpkg.com/handlebars/-/handlebars-4.7.6.tgz#d4c05c1baf90e9945f77aa68a7a219aa4a7df74e"
   integrity sha512-1f2BACcBfiwAfStCKZNrUCgqNZkGsAT7UM3kkYtXuLo0KnaVfjKOyf7PRzB6++aK9STyT1Pd2ZCPe3EGOXleXA==
