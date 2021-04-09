@@ -29,7 +29,7 @@ categories = [
 server = []
 
 [dependencies]
-prost = "0.6.1"
+prost = "0.7.0"
 tonic = "0.3.1"
 
 [dev-dependencies]
