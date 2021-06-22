@@ -30,7 +30,7 @@
 //! # Examples
 //!
 //! ```rust
-//! use lunaria_api::lunaria::v1::lunaria_client::LunariaClient;
+//! use lunaria_api::lunaria::v1::lunaria_service_client::LunariaServiceClient;
 //! use lunaria_api::lunaria::v1::{GetVersionRequest, GetVersionResponse, Version};
 //! use tonic::Request;
 //!
@@ -40,7 +40,7 @@
 //!     let address = "http://127.0.0.1:1904";
 //!
 //!     // Initialize the client
-//!     let mut lunaria = LunariaClient::connect(address).await?;
+//!     let mut lunaria = LunariaServiceClient::connect(address).await?;
 //!
 //!     // Create a request to get the game's version and send it to the server
 //!     let request = Request::new(GetVersionRequest {});

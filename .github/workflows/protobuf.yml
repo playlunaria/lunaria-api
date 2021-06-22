@@ -22,7 +22,7 @@ jobs:
       - name: Install buf from binary
         if: ${{ steps.skip_check.outputs.should_skip != 'true' }}
         run: |
-          VERSION="0.25.0"
+          VERSION="0.43.2"
           BIN="/usr/local/bin"
           BINARY_NAME="buf"
 
