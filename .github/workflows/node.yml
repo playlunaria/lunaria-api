@@ -1,28 +1,38 @@
 ---
 name: Node
 
-on: [push]
+"on": [push]
 
 jobs:
-  prettier:
+  lint:
     name: Lint
     runs-on: ubuntu-latest
 
     steps:
+      - name: Determine if files changed
+        uses: fkirc/skip-duplicate-actions@v3.4.0
+        id: skip_check
+        with:
+          paths: '["**.js", "**.ts", "**.json"]'
+
       - name: Checkout code
         uses: actions/checkout@v2
+        if: ${{ steps.skip_check.outputs.should_skip != 'true' }}
 
       - name: Set up Node
         uses: actions/setup-node@v1
+        if: ${{ steps.skip_check.outputs.should_skip != 'true' }}
         with:
           node-version: 12
 
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
+        if: ${{ steps.skip_check.outputs.should_skip != 'true' }}
         with:
           working-directory: languages/node
 
       - name: Lint project
+        if: ${{ steps.skip_check.outputs.should_skip != 'true' }}
         working-directory: languages/node
         run: yarn lint
 
@@ -31,14 +41,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Determine if files changed
+        uses: fkirc/skip-duplicate-actions@v3.4.0
+        id: skip_check
+        with:
+          paths: '["**.js", "**.ts", "**.json"]'
+
       - name: Install system dependencies
+        if: ${{ steps.skip_check.outputs.should_skip != 'true' }}
         run: sudo apt-get update && sudo apt-get install -y protobuf-compiler
 
       - name: Checkout code
         uses: actions/checkout@v2
+        if: ${{ steps.skip_check.outputs.should_skip != 'true' }}
 
       - name: Cache cargo registry
         uses: actions/cache@v1
+        if: ${{ steps.skip_check.outputs.should_skip != 'true' }}
         with:
           path: test-server/.cargo/registry
           key: ${{ runner.os }}-stable-cargo-registry-v1-${{ hashFiles('test-server/Cargo.toml') }}
@@ -46,6 +65,7 @@ jobs:
 
       - name: Cache cargo index
         uses: actions/cache@v1
+        if: ${{ steps.skip_check.outputs.should_skip != 'true' }}
         with:
           path: test-server/.cargo/git
           key: ${{ runner.os }}-stable-cargo-index-v1-${{ hashFiles('test-server/Cargo.toml') }}
@@ -53,6 +73,7 @@ jobs:
 
       - name: Cache cargo build
         uses: actions/cache@v1
+        if: ${{ steps.skip_check.outputs.should_skip != 'true' }}
         with:
           path: test-server/target
           key: ${{ runner.os }}-stable-cargo-build-target-v1-${{ hashFiles('test-server/Cargo.toml') }}
@@ -60,29 +81,35 @@ jobs:
 
       - name: Set up Rust toolchain
         uses: actions-rs/toolchain@v1
+        if: ${{ steps.skip_check.outputs.should_skip != 'true' }}
         with:
           toolchain: stable
           override: true
 
       - name: Build test server
         uses: actions-rs/cargo@v1
+        if: ${{ steps.skip_check.outputs.should_skip != 'true' }}
         with:
           command: build
           args: --manifest-path test-server/Cargo.toml
 
       - name: Set up Node
         uses: actions/setup-node@v1
+        if: ${{ steps.skip_check.outputs.should_skip != 'true' }}
         with:
           node-version: 12
 
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
+        if: ${{ steps.skip_check.outputs.should_skip != 'true' }}
         with:
           working-directory: languages/node
 
       - name: Build Node client
+        if: ${{ steps.skip_check.outputs.should_skip != 'true' }}
         working-directory: languages/node
         run: yarn build
 
       - name: Run tests
+        if: ${{ steps.skip_check.outputs.should_skip != 'true' }}
         run: bin/test-node
