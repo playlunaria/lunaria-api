@@ -1,4 +1,4 @@
-use lunaria_api::lunaria::v1::lunaria_server::LunariaServer;
+use lunaria_api::lunaria::v1::lunaria_service_server::LunariaServiceServer;
 use lunaria_api::lunaria::v1::{GetVersionRequest, GetVersionResponse, Version};
 use tonic::transport::Server;
 use tonic::{Request, Response, Status};
@@ -7,7 +7,7 @@ use tonic::{Request, Response, Status};
 struct Lunaria {}
 
 #[tonic::async_trait]
-impl lunaria_api::lunaria::v1::lunaria_server::Lunaria for Lunaria {
+impl lunaria_api::lunaria::v1::lunaria_service_server::LunariaService for Lunaria {
     async fn get_version(
         &self,
         _request: Request<GetVersionRequest>,
@@ -33,7 +33,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let lunaria = Lunaria::default();
 
     Server::builder()
-        .add_service(LunariaServer::new(lunaria))
+        .add_service(LunariaServiceServer::new(lunaria))
         .serve(address)
         .await?;
 

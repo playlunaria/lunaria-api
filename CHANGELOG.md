@@ -7,11 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Rename gRPC service `Lunaria` to `LunariaService`
+
 ## [0.1.1] - 2020-10-29
 
 ### Fixed
 
-- Include Protocol Buffers in Rust crate to fix build errors (#22)
+- Include Protocol Buffers in Rust crate to fix build errors
 
 ## [0.1.0] - 2020-10-17
 

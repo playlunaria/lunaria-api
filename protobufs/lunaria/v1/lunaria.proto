@@ -13,6 +13,6 @@ message GetVersionResponse {
   Version version = 1;
 }
 
-service Lunaria {
+service LunariaService {
   rpc GetVersion(GetVersionRequest) returns (GetVersionResponse);
 }
