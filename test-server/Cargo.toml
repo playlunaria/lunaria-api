@@ -1,6 +1,6 @@
 [package]
 name = "test-server"
-version = "0.1.1"
+version = "0.1.2"
 authors = ["Jan David <jandavid@playlunaria.com>"]
 edition = "2018"
 publish = false
@@ -9,7 +9,7 @@ publish = false
 # https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-lunaria-api = { path = "../languages/rust", version = "0.1.1", features = ["server"] }
+lunaria-api = { path = "../languages/rust", version = "0.1.2", features = ["server"] }
 
 tokio = { version = "1.7.1", features = ["full"] }
 tonic = "0.4.3"
