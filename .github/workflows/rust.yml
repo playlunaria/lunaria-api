@@ -9,19 +9,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Determine if files changed
-        uses: fkirc/skip-duplicate-actions@v3.4.0
-        id: skip_check
-        with:
-          paths: '["**.rs", "**Cargo.{toml,lock}"]'
-
       - name: Checkout code
         uses: actions/checkout@v2
-        if: ${{ steps.skip_check.outputs.should_skip != 'true' }}
 
       - name: Cache build artifacts
         uses: actions/cache@v2.1.6
-        if: ${{ steps.skip_check.outputs.should_skip != 'true' }}
         with:
           path: |
             languages/rust/.cargo/registry
@@ -35,14 +27,12 @@ jobs:
 
       - name: Set up Rust toolchain
         uses: actions-rs/toolchain@v1
-        if: ${{ steps.skip_check.outputs.should_skip != 'true' }}
         with:
           toolchain: stable
           override: true
 
       - name: Run Clippy
         uses: actions-rs/cargo@v1
-        if: ${{ steps.skip_check.outputs.should_skip != 'true' }}
         with:
           command: clippy
           args: --manifest-path languages/rust/Cargo.toml --all-targets --all-features -- -D warnings
@@ -52,19 +42,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Determine if files changed
-        uses: fkirc/skip-duplicate-actions@v3.4.0
-        id: skip_check
-        with:
-          paths: '["**.rs", "**Cargo.{toml,lock}"]'
-
       - name: Checkout code
         uses: actions/checkout@v2
-        if: ${{ steps.skip_check.outputs.should_skip != 'true' }}
 
       - name: Set up Rust toolchain
         uses: actions-rs/toolchain@v1
-        if: ${{ steps.skip_check.outputs.should_skip != 'true' }}
         with:
           profile: minimal
           toolchain: stable
@@ -73,7 +55,6 @@ jobs:
 
       - name: Run Rustfmt
         uses: actions-rs/cargo@v1
-        if: ${{ steps.skip_check.outputs.should_skip != 'true' }}
         with:
           command: fmt
           args: --manifest-path languages/rust/Cargo.toml --all -- --check
@@ -86,19 +67,11 @@ jobs:
       LUNARIA_ADDRESS: 127.0.0.1:1904
 
     steps:
-      - name: Determine if files changed
-        uses: fkirc/skip-duplicate-actions@v3.4.0
-        id: skip_check
-        with:
-          paths: '["**.rs", "**Cargo.{toml,lock}"]'
-
       - name: Checkout code
         uses: actions/checkout@v2
-        if: ${{ steps.skip_check.outputs.should_skip != 'true' }}
 
       - name: Cache build artifacts
         uses: actions/cache@v2.1.6
-        if: ${{ steps.skip_check.outputs.should_skip != 'true' }}
         with:
           path: |
             languages/rust/.cargo/registry
@@ -112,25 +85,21 @@ jobs:
 
       - name: Set up Rust toolchain
         uses: actions-rs/toolchain@v1
-        if: ${{ steps.skip_check.outputs.should_skip != 'true' }}
         with:
           toolchain: stable
           override: true
 
       - name: Build test server
         uses: actions-rs/cargo@v1
-        if: ${{ steps.skip_check.outputs.should_skip != 'true' }}
         with:
           command: build
           args: --manifest-path test-server/Cargo.toml
 
       - name: Build crate
         uses: actions-rs/cargo@v1
-        if: ${{ steps.skip_check.outputs.should_skip != 'true' }}
         with:
           command: build
           args: --manifest-path languages/rust/Cargo.toml
 
       - name: Run tests
         run: bin/test-rust
-        if: ${{ steps.skip_check.outputs.should_skip != 'true' }}
