@@ -1,6 +1,6 @@
 {
   "name": "lunaria-api",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "API client for the video game Lunaria",
   "keywords": [
     "api",
