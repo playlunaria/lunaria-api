@@ -9,19 +9,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Determine if files changed
-        uses: fkirc/skip-duplicate-actions@v3.4.0
-        id: skip_check
-        with:
-          paths: '["**.md"]'
-
       - name: Checkout code
         uses: actions/checkout@v2
-        if: ${{ steps.skip_check.outputs.should_skip != 'true' }}
 
       - name: markdownlint-cli
         uses: nosborn/github-action-markdown-cli@v1.1.1
-        if: ${{ steps.skip_check.outputs.should_skip != 'true' }}
         with:
           files: "**.md"
 
@@ -30,19 +22,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Determine if files changed
-        uses: fkirc/skip-duplicate-actions@v3.4.0
-        id: skip_check
-        with:
-          paths: '["**.md"]'
-
       - name: Checkout code
         uses: actions/checkout@v2
-        if: ${{ steps.skip_check.outputs.should_skip != 'true' }}
 
       - name: prettier
         uses: creyD/prettier_action@v3.3
-        if: ${{ steps.skip_check.outputs.should_skip != 'true' }}
         with:
           dry: true
           prettier_options: "--check **.md"

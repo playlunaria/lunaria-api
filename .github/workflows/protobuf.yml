@@ -9,18 +9,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Determine if files changed
-        uses: fkirc/skip-duplicate-actions@v3.4.0
-        id: skip_check
-        with:
-          paths: '["**.proto"]'
-
       - name: Checkout code
         uses: actions/checkout@v2
-        if: ${{ steps.skip_check.outputs.should_skip != 'true' }}
 
       - name: Install buf from binary
-        if: ${{ steps.skip_check.outputs.should_skip != 'true' }}
         run: |
           VERSION="0.43.2"
           BIN="/usr/local/bin"
@@ -33,7 +25,6 @@ jobs:
           sudo chmod +x "${BIN}/${BINARY_NAME}"
 
       - name: Lint Protocol Buffers
-        if: ${{ steps.skip_check.outputs.should_skip != 'true' }}
         run: |
           cd protobufs
           buf check lint

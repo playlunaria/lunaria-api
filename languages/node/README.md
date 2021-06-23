@@ -29,12 +29,12 @@ check out the specification of Lunaria's API:
 import {
   GetVersionRequest,
   GetVersionResponse,
-  LunariaClient,
+  LunariaServiceClient,
 } from "lunaria-api";
 import * as grpc from "@grpc/grpc-js";
 
 // Initialize a new API client
-const lunaria = new LunariaClient(
+const lunaria = new LunariaServiceClient(
   "127.0.0.1:1904",
   grpc.credentials.createInsecure()
 );
