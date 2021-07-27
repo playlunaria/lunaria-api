@@ -52,9 +52,9 @@ read -ra current_version_components <<< "$current_version"
 read -ra next_version_components <<< "$next_version"
 IFS=$'\n\t'
 
-vim -c "%s/expect(version.getMajor()).toEqual(${current_version_components[0]});/expect(version.getMajor()).toEqual(${next_version_components[0]});/g" -c "wq" "languages/node/test/version.test.ts"
-vim -c "%s/expect(version.getMinor()).toEqual(${current_version_components[1]});/expect(version.getMinor()).toEqual(${next_version_components[1]});/g" -c "wq" "languages/node/test/version.test.ts"
-vim -c "%s/expect(version.getPatch()).toEqual(${current_version_components[2]});/expect(version.getPatch()).toEqual(${next_version_components[2]});/g" -c "wq" "languages/node/test/version.test.ts"
+vim -c "%s/expect(version.getMajor()).toEqual(${current_version_components[0]});/expect(version.getMajor()).toEqual(${next_version_components[0]});/g" -c "wq" "languages/node/test/lunaria.test.ts"
+vim -c "%s/expect(version.getMinor()).toEqual(${current_version_components[1]});/expect(version.getMinor()).toEqual(${next_version_components[1]});/g" -c "wq" "languages/node/test/lunaria.test.ts"
+vim -c "%s/expect(version.getPatch()).toEqual(${current_version_components[2]});/expect(version.getPatch()).toEqual(${next_version_components[2]});/g" -c "wq" "languages/node/test/lunaria.test.ts"
 
 vim -c "%s/assert_eq!(${current_version_components[0]}, version.major);/assert_eq!(${next_version_components[0]}, version.major);/g" -c "wq" "languages/rust/src/lib.rs"
 vim -c "%s/assert_eq!(${current_version_components[1]}, version.minor);/assert_eq!(${next_version_components[1]}, version.minor);/g" -c "wq" "languages/rust/src/lib.rs"

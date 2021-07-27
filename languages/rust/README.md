@@ -21,7 +21,7 @@ an async runtime like [`tokio`][tokio].
 
 ```toml
 [dependencies]
-lunaria-api = "0.1.3"
+lunaria-api = "0.2.0"
 tokio = { version = "0.2.22", features = ["macros", "rt-threaded"] }
 tonic = "0.3.1"
 ```
