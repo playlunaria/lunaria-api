@@ -8,7 +8,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     tonic_build::configure()
         .build_server(build_server)
         .compile(
-            &["lunaria/v1/lunaria.proto"],
+            &["lunaria/v1/lunaria.proto", "lunaria/v1/game.proto"],
             &[proto_path.to_str().unwrap()],
         )?;
 
