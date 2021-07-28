@@ -29,21 +29,26 @@
   },
   "scripts": {
     "build": "bin/build",
-    "lint": "tsdx lint src test --ignore-pattern '**/*.js'",
-    "test": "tsdx test"
-  },
-  "jest": {
-    "testEnvironment": "node"
+    "clean": "rm -rf dist",
+    "lint": "eslint src/ --ext .ts",
+    "test": "jest"
   },
   "prettier": {
     "printWidth": 80
   },
   "devDependencies": {
     "@grpc/grpc-js": "^1.1.7",
+    "@types/jest": "^26.0.24",
+    "@types/node": "^16.4.5",
+    "@typescript-eslint/eslint-plugin": "^4.28.5",
+    "@typescript-eslint/parser": "^4.28.5",
+    "eslint": "^7.31.0",
     "grpc-tools": "^1.9.1",
     "grpc_tools_node_protoc_ts": "^5.0.1",
-    "tsdx": "^0.14.1",
+    "jest": "^27.0.6",
+    "ts-jest": "^27.0.4",
+    "ts-node": "^10.1.0",
     "tslib": "^2.0.3",
-    "typescript": "^4.0.3"
+    "typescript": "^4.3.5"
   }
 }
