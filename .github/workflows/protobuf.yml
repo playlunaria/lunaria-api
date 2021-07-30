@@ -10,21 +10,13 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2.3.4
 
-      - name: Install buf from binary
-        run: |
-          VERSION="0.43.2"
-          BIN="/usr/local/bin"
-          BINARY_NAME="buf"
+      - name: Set up Buf
+        uses: bufbuild/buf-setup-action@v0.1.0
 
-          sudo curl -sSL \
-              "https://github.com/bufbuild/buf/releases/download/v${VERSION}/${BINARY_NAME}-$(uname -s)-$(uname -m)" \
-              -o "${BIN}/${BINARY_NAME}"
-
-          sudo chmod +x "${BIN}/${BINARY_NAME}"
-
-      - name: Lint Protocol Buffers
-        run: |
-          cd protobufs
-          buf check lint
+      - name: Run Buf
+        uses: bufbuild/buf-lint-action@v0.2.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          input: protobufs
