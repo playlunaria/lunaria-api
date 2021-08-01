@@ -11,6 +11,15 @@
 - name: C-feature-request
   color: 1abc9c
   description: "Category: Feature requests"
+- name: E-node
+  color: 3498db
+  description: "Ecosystem: Node"
+- name: E-protobuf
+  color: 3498db
+  description: "Ecosystem: Protobufs"
+- name: E-rust
+  color: 3498db
+  description: "Ecosystem: Rust"
 - name: PR-block
   color: 3498db
   description: "Pull Request: Do not merge"
