@@ -21,7 +21,7 @@ test("getVersion returns Lunaria's version", async () => {
     if (version !== undefined) {
       expect(version.getMajor()).toEqual(0);
       expect(version.getMinor()).toEqual(2);
-      expect(version.getPatch()).toEqual(0);
+      expect(version.getPatch()).toEqual(1);
     } else {
       expect(version).toBeDefined();
     }

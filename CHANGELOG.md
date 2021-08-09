@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.1] - 2021-08-09
+
 ### Changed
 
 - Change `startGame` method to return a message instead of a stream
@@ -43,7 +45,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Create an endpoint that returns the version of Lunaria
 
-[unreleased]: https://github.com/playlunaria/lunaria-api/compare/v0.2.0...HEAD
+[unreleased]: https://github.com/playlunaria/lunaria-api/compare/v0.2.1...HEAD
+[0.2.1]: https://github.com/playlunaria/lunaria-api/releases/tag/v0.2.1
 [0.2.0]: https://github.com/playlunaria/lunaria-api/releases/tag/v0.2.0
 [0.1.3]: https://github.com/playlunaria/lunaria-api/releases/tag/v0.1.3
 [0.1.2]: https://github.com/playlunaria/lunaria-api/releases/tag/v0.1.2
