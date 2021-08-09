@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Change `startGame` method to return a message instead of a stream
+
 ## [0.2.0] – 2021-07-27
 
 ### Added

@@ -8,11 +8,8 @@ const lunaria = new GameServiceClient(
 
 test("getVersion returns Lunaria's version", async () => {
   const request = new StartGameRequest();
-  const call = lunaria.startGame(request);
 
-  call.on("data", (response: StartGameResponse) => {
-    expect(response.getStatus()).toEqual(
-      StartGameResponse.GameStatus.GAME_STATUS_RUNNING
-    );
+  lunaria.startGame(request, (err, _response: StartGameResponse) => {
+    expect(err).toBeNull();
   });
 });
