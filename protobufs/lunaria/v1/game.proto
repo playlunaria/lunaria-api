@@ -3,16 +3,8 @@ syntax = "proto3";
 package lunaria.v1;
 
 message StartGameRequest {}
-message StartGameResponse {
-  enum GameStatus {
-    GAME_STATUS_UNSPECIFIED = 0;
-    GAME_STATUS_LOADING = 1;
-    GAME_STATUS_RUNNING = 2;
-    GAME_STATUS_STOPPED = 3;
-  }
-  GameStatus status = 1;
-}
+message StartGameResponse {}
 
 service GameService {
-  rpc StartGame(StartGameRequest) returns (stream StartGameResponse);
+  rpc StartGame(StartGameRequest) returns (StartGameResponse);
 }
