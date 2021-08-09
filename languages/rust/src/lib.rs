@@ -22,7 +22,7 @@
 //!
 //! ```toml
 //! [dependencies]
-//! lunaria-api = "0.2.0"
+//! lunaria-api = "0.2.1"
 //! tokio = { version = "0.2.22", features = ["macros", "rt-threaded"] }
 //! tonic = "0.3.1"
 //! ```
@@ -50,7 +50,7 @@
 //!     if let Some(version) = version_response.version {
 //!         assert_eq!(0, version.major);
 //!         assert_eq!(2, version.minor);
-//!         assert_eq!(0, version.patch);
+//!         assert_eq!(1, version.patch);
 //!     }
 //!
 //!     Ok(())
