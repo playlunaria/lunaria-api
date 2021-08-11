@@ -38,7 +38,7 @@
   },
   "devDependencies": {
     "@grpc/grpc-js": "^1.1.7",
-    "@types/jest": "^26.0.24",
+    "@types/jest": "^27.0.0",
     "@types/node": "^16.4.5",
     "@typescript-eslint/eslint-plugin": "^4.28.5",
     "@typescript-eslint/parser": "^4.28.5",
