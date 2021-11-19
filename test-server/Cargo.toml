@@ -13,4 +13,4 @@ lunaria-api = { path = "../languages/rust", version = "0.2.1", features = ["serv
 
 tokio = { version = "1.7.1", features = ["full"] }
 tokio-stream = "0.1.7"
-tonic = "0.5.0"
+tonic = "0.6.1"
